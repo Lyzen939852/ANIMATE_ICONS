@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Animated icons</title>
+    <style>
+        /* 多个不同的id具有相同的样式 */
+        #chain,#battery,#hourglass{
+            font-size:100px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chain" class="fa"></div>
+    <br/>
+    <div id="battery"class="fa"></div>
+    <br/>
+    <div id="hourglass" class="fa"></div>
+
+    <script>
+        //实现连接图标动画效果
+        function brakeChain(){
+            let chain = document.getElementById("chain");
+            chain.innerHTML = "&#xf0c1;"//fa-link图标的Unicode编码
+           // setTimeout()定时器:只执行一次
+            setTimeout(function(){
+                chain.innerHTML = "&#xf127;"//fa-chain-broken图标的Unicoede编码
+            },1000);
+        }
+
+        brakeChain();
+// setInterval()定时器:重复执行
+        setInterval(brakeChain,2000);
+
+
+        //实现电池消耗动画效果
+        function chargeBattery(){
+            let battery = document.getElementById("battery");
+            battery.innerHTML = "&#xf244;"//fa-battery-empty图标的Unicoede编码（空格）
+            setTimeout(function(){
+                battery.innerHTML = "&#xf243;"//fa-battery-quarter图标的Unicoede编码（四分之一）
+            },1000);
+            setTimeout(function(){
+                battery.innerHTML = "&#xf242;"//fa-battery-half图标的Unicoede编码 （四分之二）
+            },2000)
+            setTimeout(function(){
+                battery.innerHTML = "&#xf241;"//fa-battery-three-quarters图标的Unicoede编码（四分之三）
+            },3000)
+            setTimeout(function(){
+                battery.innerHTML = "&#xf240;"//fa-battery-full图标的Unicoede编码（满格）
+            },4000)
+        }
+
+        chargeBattery();
+        setInterval(chargeBattery,5000);
+
+
+        //沙漏动画效果
+        function hourglassTip(){
+            let hourglass = document.getElementById("hourglass");
+            hourglass.innerHTML = "&#xf251;"
+            setTimeout(function(){
+                hourglass.innerHTML = "&#xf252;"
+            },1000);
+            setTimeout(function(){
+                hourglass.innerHTML = "&#xf253;"
+            },2000);
+        }
+        hourglassTip();
+        setInterval(hourglassTip,3000);
+    </script>
+</body>
+</html>
+
+<!-- unicode字符集使用方法 -->
+<!-- 
+    （1）HTML：&#dddd;或&#xhhhh;其中dddd表示4位10进制数值，hhhh表示4位16进制数值，
+两种格式分别以&#及&#x为前缀，表示为10进制码或者16进制的Unicode码，都需要以分号为后缀
+    （2）CSS中使用：\hhhh;CSS中使用Unicode字符的场合比较少，但偶尔也会用到，
+一般是使用4位16进制Unicode码表示，前缀为反斜杠
+    （3）JavaScript中使用：\uhhhh;JavaScript代码中经常会用到输出特殊字符，
+如在某个元素中输出温度或角度符。使用希腊字母、罗马数字符、只需要在4位Unicode的16进制码前面加上前缀“\u”即可 
+-->
